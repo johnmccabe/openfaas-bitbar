@@ -1,0 +1,16 @@
+sudo: required
+
+language: go
+
+go:
+  - 1.9.x
+
+deploy:
+  provider: releases
+  api_key:
+      secure: "FNwr/SKsvNtM8dk3AjDwsL+Sl/oO7VZktewu7patf1lgaCApshzOP+ZSGsZBKPynrDpa/wdUICiV9PA5AM8D4RflOQQBWipHs2469Jdry/q5sf1r0/iUGbYpEJa2K/E+GOZUKs8HfKm/I7yGvqnXOUBBWM4D1n7W4ULQ+49b8gQOkLr3YowgvWiR+KkrV90yjkr7/4zngZyaO8JkBsT5860IENr/91FIHf84eVSRLy/IqLN4o5oo/WB+LJtQh7f7Wv0o/4nGjE7nldRB5vx3YeDRzp4qIlACrilzdUzob3l1sbkjW6BRU5ujVWKH5wZH/lM/k5gA4aYzrHaVJCkhgRI2/Iu4nEkEx17Pjk1GKh0IMXvYOHiDtTQ9W2jrhBfI7PPD/Ou2iWowoOT7J4kOVIGV/blUv0uxctVz76+jmyCDi0p+Vx1PIa6sH57F8Nv9E6D+Mm2rnXhtCAXYaVRiQW16qg77mbIRChnaw2bL1MJgiIDEsoo8boJThhAGvL/Ss0BUzGQHZl1T3E83w0MewbFcs9FKLSrn6XXc450NuT8dXlUFM/39/FySvlnGG77NDSgCBn8B/p3UXZRcDV85KTq3vlp6OCHnIx+Hx2w+VXUeBjTSJ4BHCxsT1wroDNvUJztu0Bac/kjld1mRuPSBaqigY8zaK19BjCtqzl45s4c="
+  file: 
+  - openfaas-bitbar
+  skip_cleanup: true
+  on:
+    tags: true
