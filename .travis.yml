@@ -9,7 +9,7 @@ jobs:
   include:
     - stage: Test and build
       script: go test ./...
-      script: go build;  tar cf openfaas-bitbar.tar.gz openfaas-bitbar
+      script: go build;  tar czf openfaas-bitbar.tar.gz openfaas-bitbar
 
 deploy:
   provider: releases
