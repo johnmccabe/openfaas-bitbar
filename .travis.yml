@@ -5,6 +5,13 @@ language: go
 go:
   - 1.9.x
 
+jobs:
+  include:
+    - stage: test
+      script: go test ./...
+    - stage: build
+      script: go build
+
 deploy:
   provider: releases
   api_key:
