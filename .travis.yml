@@ -9,7 +9,7 @@ jobs:
   include:
     - stage: Test and build
       script: go test ./...
-      script: go build;  tar czf openfaas-bitbar.tar.gz openfaas-bitbar; sha256sum openfaas-bitbar.tar.gz | awk '{ print $1 }' > openfaas-bitbar.tar.gz.sha256
+      script: GOOS=darwin GOAARCH=amd64 go build;  tar czf openfaas-bitbar.tar.gz openfaas-bitbar; sha256sum openfaas-bitbar.tar.gz | awk '{ print $1 }' > openfaas-bitbar.tar.gz.sha256
 
 deploy:
   provider: releases
