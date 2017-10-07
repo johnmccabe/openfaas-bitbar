@@ -84,15 +84,9 @@ func getPluginDir() (string, error) {
 }
 
 func dirExists(path string) bool {
-	fmt.Printf("PATH: [%+v]\n", path)
 	stat, err := os.Stat(path)
-	fmt.Printf("stat: %+v\n", stat)
-	fmt.Printf("err: %v\n", err)
 	if err == nil && stat.IsDir() {
 		return true
 	}
-	// if stat, err := os.Stat(path); err == nil && stat.IsDir() {
-	// 	return true
-	// }
 	return false
 }
