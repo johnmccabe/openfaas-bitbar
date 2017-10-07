@@ -1,0 +1,4 @@
+[my-local-openfaas]
+name = "Local OpenFaaS"
+gateway = "http://localhost:8080/"
+prometheus = "http://localhost:9090/"
