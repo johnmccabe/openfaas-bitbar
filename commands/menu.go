@@ -51,18 +51,18 @@ func runMenu(cmd *cobra.Command, args []string) {
 	menu := plugin.NewSubMenu()
 	menu.Line("").Image(assets.Logo)
 	menu.Line("---")
-	menu.Line("Initialise config").Bash(ex).Params([]string{"config"}).Terminal(true).Refresh(true)
+
+	menu.Line(cfg[0].Name).Font("Menlo-Bold")
 
 	for _, function := range *functions {
 		menu.Line(function.Name).Font("Menlo-Regular").Size(14)
 		statsMenu := menu.NewSubMenu()
 		statsMenu.Line("Actions").Font("Menlo-Bold")
-		statsMenu.Line("Delete Function")
-		statsMenu.Line("Redeploy Function")
+		statsMenu.Line("Delete Function").Bash(ex).Params([]string{"delete", function.Name}).Refresh(true).Terminal(false)
 		statsMenu.HR()
 		statsMenu.Line("API Stats").Font("Menlo-Bold")
-		statsMenu.Line(fmt.Sprintf("Current Replicas:		%d", function.Replicas))
-		statsMenu.Line(fmt.Sprintf("Total Invocations:	%d", function.InvocationCount))
+		statsMenu.Line(fmt.Sprintf("Current Replicas:			%d", function.Replicas))
+		statsMenu.Line(fmt.Sprintf("Total Invocations:		%d", function.InvocationCount))
 		statsMenu.HR()
 		statsMenu.Line("Prometheus Stats").Font("Menlo-Bold")
 		statsMenu.Line("Invocations per second")
@@ -72,6 +72,8 @@ func runMenu(cmd *cobra.Command, args []string) {
 		img, _ = graphs.FunctionGraph(cfg[0].Prometheus, function.Name, "gateway_function_invocation_total{function_name='%s'}")
 		statsMenu.Line("").Image(img)
 	}
+	menu.Line("---")
+	menu.Line("Refresh..").Refresh(true)
 
 	fmt.Print(plugin.Render())
 }
