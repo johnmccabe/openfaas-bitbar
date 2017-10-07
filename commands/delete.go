@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/johnmccabe/bitbar-openfaas/config"
-	"github.com/johnmccabe/bitbar-openfaas/faas"
+	"github.com/johnmccabe/openfaas-bitbar/config"
+	"github.com/johnmccabe/openfaas-bitbar/faas"
 	"github.com/spf13/cobra"
 )
 
@@ -13,7 +13,7 @@ func init() {
 	rootCmd.AddCommand(deleteCmd)
 }
 
-// runMenu adds the `menu` subcommand to bitbar-openfaas
+// runMenu adds the `menu` subcommand to openfaas-bitbar
 var deleteCmd = &cobra.Command{
 	Use:     "delete",
 	Short:   "TODO",

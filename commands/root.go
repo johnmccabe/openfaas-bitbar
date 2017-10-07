@@ -13,7 +13,7 @@ func Execute() {
 
 // rootCmd is the root command it runs the menuSubcommand by default
 var rootCmd = &cobra.Command{
-	Use:   "bitbar-openfaas",
+	Use:   "openfaas-bitbar",
 	Short: "TODO",
 	Long:  `TODO`,
 	Run:   runRoot,

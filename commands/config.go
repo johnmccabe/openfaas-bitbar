@@ -14,7 +14,7 @@ func init() {
 	rootCmd.AddCommand(configCmd)
 }
 
-// runMenu adds the `menu` subcommand to bitbar-openfaas
+// runMenu adds the `menu` subcommand to openfaas-bitbar
 var configCmd = &cobra.Command{
 	Use:     "config",
 	Short:   "TODO",

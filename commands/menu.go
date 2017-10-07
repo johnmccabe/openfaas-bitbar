@@ -5,11 +5,11 @@ import (
 	"os"
 
 	"github.com/johnmccabe/bitbar"
-	"github.com/johnmccabe/bitbar-openfaas/assets"
-	"github.com/johnmccabe/bitbar-openfaas/config"
-	"github.com/johnmccabe/bitbar-openfaas/faas"
-	"github.com/johnmccabe/bitbar-openfaas/graphs"
-	"github.com/johnmccabe/bitbar-openfaas/types"
+	"github.com/johnmccabe/openfaas-bitbar/assets"
+	"github.com/johnmccabe/openfaas-bitbar/config"
+	"github.com/johnmccabe/openfaas-bitbar/faas"
+	"github.com/johnmccabe/openfaas-bitbar/graphs"
+	"github.com/johnmccabe/openfaas-bitbar/types"
 	"github.com/spf13/cobra"
 )
 
@@ -17,7 +17,7 @@ func init() {
 	rootCmd.AddCommand(menuCmd)
 }
 
-// runMenu adds the `menu` subcommand to bitbar-openfaas
+// runMenu adds the `menu` subcommand to openfaas-bitbar
 var menuCmd = &cobra.Command{
 	Use:     "menu",
 	Short:   "TODO",

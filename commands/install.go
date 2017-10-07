@@ -16,7 +16,7 @@ func init() {
 	rootCmd.AddCommand(installCmd)
 }
 
-// runMenu adds the `menu` subcommand to bitbar-openfaas
+// runMenu adds the `menu` subcommand to openfaas-bitbar
 var installCmd = &cobra.Command{
 	Use:     "install",
 	Short:   "TODO",
@@ -55,7 +55,7 @@ func runInstall(cmd *cobra.Command, args []string) {
 		os.Exit(1)
 	}
 
-	pluginSymlink := fmt.Sprintf("%s/bitbar-openfaas.%s", pluginDir, answers.RefreshRate)
+	pluginSymlink := fmt.Sprintf("%s/openfaas-bitbar.%s", pluginDir, answers.RefreshRate)
 
 	err = os.Symlink(ex, pluginSymlink)
 	if err != nil {
