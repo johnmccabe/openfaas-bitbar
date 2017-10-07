@@ -72,6 +72,11 @@ func runMenu(cmd *cobra.Command, args []string) {
 		img, _ = graphs.FunctionGraph(cfg[0].Prometheus, function.Name, "gateway_function_invocation_total{function_name='%s'}")
 		statsMenu.Line("").Image(img)
 	}
+
+	menu.Line("---")
+	menu.Line("Open Gateway...").Bash("/usr/bin/open").Params([]string{cfg[0].Gateway}).Terminal(false)
+	menu.Line("Open Prometheus...").Bash("/usr/bin/open").Params([]string{cfg[0].Prometheus}).Terminal(false)
+
 	menu.Line("---")
 	menu.Line("Refresh..").Refresh(true)
 
