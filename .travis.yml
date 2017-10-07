@@ -7,9 +7,8 @@ go:
 
 jobs:
   include:
-    - stage: test
+    - stage: Test and build
       script: go test ./...
-    - stage: build
       script: go build
 
 deploy:
