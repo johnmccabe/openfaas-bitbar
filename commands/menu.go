@@ -29,6 +29,16 @@ var menuCmd = &cobra.Command{
 func runMenu(cmd *cobra.Command, args []string) {
 	ex, _ := os.Executable()
 
+	if config.LegacyTOMLExists() {
+		plugin := bitbar.New()
+		plugin.StatusLine("").Image(assets.RedLogo)
+		menu := plugin.NewSubMenu()
+		menu.Line("TOML config detected: ~/.openfaas/config.toml")
+		menu.Line("Remove it before running `openfaas-bitbar config`.")
+		fmt.Print(plugin.Render())
+		os.Exit(1)
+	}
+
 	cfg, err := config.Read()
 	if err != nil {
 		plugin := bitbar.New()

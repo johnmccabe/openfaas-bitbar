@@ -14,7 +14,9 @@ import (
 // DefaultDir TODO
 const DefaultDir string = "~/.openfaas"
 const yamlFile = "config.yaml"
+const legacyTOMLFile = "config.toml"
 
+// DefaultStack TODO
 var DefaultStack = Stack{
 	Name:       "My OpenFaaS",
 	Gateway:    "http://localhost:8080",
@@ -30,6 +32,15 @@ func Dir() string {
 // File TODO
 func File() string {
 	return path.Clean(filepath.Join(Dir(), yamlFile))
+}
+
+// LegacyTOMLExists TODO
+func LegacyTOMLExists() bool {
+	tomlFile := path.Clean(filepath.Join(Dir(), legacyTOMLFile))
+	if _, err := os.Stat(tomlFile); !os.IsNotExist(err) {
+		return true
+	}
+	return false
 }
 
 // EnsureConfigDir creates a configDir() if it doesn't already exist
