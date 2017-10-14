@@ -1,0 +1,11 @@
+stacks:
+- name: "Local OpenFaaS"
+  gateway: "http://localhost:8080"
+  prometheus: "http://localhost:9090"
+- name: "Public OpenFaaS"
+  gateway: "http://host.domain.tld:8080/"
+  gatewayauth:
+    token: notimplemented
+  prometheus: "http://host.domain.tld:9090/"
+  prometheusauth:
+    token: notimplemented
