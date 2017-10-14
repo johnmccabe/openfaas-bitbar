@@ -1,3 +1,5 @@
+# EARLY PRE-RELEASE
+
 # OpenFaaS Bitbar Plugin
 
 [![Build Status](https://travis-ci.org/johnmccabe/openfaas-bitbar.svg?branch=master)](https://travis-ci.org/johnmccabe/openfaas-bitbar)
