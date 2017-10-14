@@ -95,9 +95,11 @@ func refreshPlugin() error {
 
 	if answers.Refresh {
 		cmd := exec.Command("open", "bitbar://refreshPlugin?name=openfaas-bitbar.*?")
-		log.Printf("Refreshing plugin...")
+		fmt.Println("Refreshing plugin...")
 		err := cmd.Run()
-		log.Printf("Command finished with error: %v", err)
+		if err != nil {
+			log.Printf("Command exited unexpectedly with error: %v", err)
+		}
 
 	}
 

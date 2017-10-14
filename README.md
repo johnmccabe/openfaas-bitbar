@@ -15,7 +15,7 @@ You can install and use the plugin as follows (be aware that this is still under
 
 ### BitBar
 
-First, follow the Bitbar Getting Started instructions to get BitBar running on your system. Make sure you create a new plugins directory when first installing, don't just use the Documents directory itself - try creating ~/Documents/bitbar_plugins.
+First, follow the Bitbar Getting Started instructions to get BitBar running on your system. **Note:** make sure you create a new plugins directory when first installing, don't just use the Documents directory itself - try creating ~/Documents/bitbar_plugins.
  - https://github.com/matryer/bitbar
 
 
