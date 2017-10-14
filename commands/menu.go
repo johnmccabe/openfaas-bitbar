@@ -32,7 +32,7 @@ func runMenu(cmd *cobra.Command, args []string) {
 	cfg, err := config.Read(config.DefaultDir)
 	if err != nil {
 		plugin := bitbar.New()
-		plugin.StatusLine(" ❓").TemplateImage(assets.BlueLogo)
+		plugin.StatusLine(" ❓").Font("Avenir").Size(16).TemplateImage(assets.MonoLogo)
 		menu := plugin.NewSubMenu()
 		if err.Error() == "Config file not found" {
 			menu.Line("Initialise config").Bash(ex).Params([]string{"config"}).Terminal(true).Refresh(true)
@@ -47,7 +47,7 @@ func runMenu(cmd *cobra.Command, args []string) {
 	faas.GetFunctions(cfg.Stacks[0].Gateway, functions)
 
 	plugin := bitbar.New()
-	plugin.StatusLine(fmt.Sprintf(" %d", len(*functions))).Image(assets.BlueLogo).Color("#067FD1")
+	plugin.StatusLine(fmt.Sprintf(" %d", len(*functions))).Font("Avenir").Size(16).Image(assets.MonoLogo)
 	menu := plugin.NewSubMenu()
 	menu.Line("").Image(assets.Logo)
 	menu.Line("---")
