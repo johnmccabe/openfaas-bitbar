@@ -8,6 +8,8 @@ import (
 	"github.com/spf13/viper"
 )
 
+const DefaultDir string = "~/.openfaas/"
+
 // Read config from the specified dir returning a slice of OpenFaaS instances
 func Read(dir string) (*Config, error) {
 	f, err := homedir.Expand(dir)

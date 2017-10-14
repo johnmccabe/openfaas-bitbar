@@ -29,7 +29,7 @@ var menuCmd = &cobra.Command{
 func runMenu(cmd *cobra.Command, args []string) {
 	ex, _ := os.Executable()
 
-	cfg, err := config.Read("~/.openfaas/")
+	cfg, err := config.Read(config.DefaultDir)
 	if err != nil {
 		plugin := bitbar.New()
 		plugin.StatusLine(" ❓").TemplateImage(assets.BlueLogo)
