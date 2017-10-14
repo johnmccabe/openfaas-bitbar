@@ -35,7 +35,7 @@ func runDelete(cmd *cobra.Command, args []string) {
 
 	functionName := args[0]
 
-	err = faas.DeleteFunction(cfg[0].Gateway, functionName)
+	err = faas.DeleteFunction(cfg.Stacks[0].Gateway, functionName)
 	if err != nil {
 		fmt.Printf("Error: %v\n", err)
 	}

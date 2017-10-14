@@ -23,7 +23,7 @@ brew install openfaas-bitbar
 Next create a config file (this step will be automated in future releases).
 ```
 mkdir -p ~/.openfaas
-curl -o ~/.openfaas/config.toml https://raw.githubusercontent.com/johnmccabe/openfaas-bitbar/master/.openfaas/config.toml
+curl -o ~/.openfaas/config.toml https://raw.githubusercontent.com/johnmccabe/openfaas-bitbar/master/.openfaas/config.yaml
 ```
 This default config file points at OpenFaaS/Prometheus instances running on localhost. Update the endpoints here to point at your own OpenFaaS instance (support for auth coming soon).
 

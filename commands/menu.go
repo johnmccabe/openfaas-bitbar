@@ -44,7 +44,7 @@ func runMenu(cmd *cobra.Command, args []string) {
 	}
 
 	functions := new([]types.Function)
-	faas.GetFunctions(cfg[0].Gateway, functions)
+	faas.GetFunctions(cfg.Stacks[0].Gateway, functions)
 
 	plugin := bitbar.New()
 	plugin.StatusLine(fmt.Sprintf(" %d", len(*functions))).Image(assets.BlueLogo).Color("#067FD1")
@@ -52,7 +52,7 @@ func runMenu(cmd *cobra.Command, args []string) {
 	menu.Line("").Image(assets.Logo)
 	menu.Line("---")
 
-	menu.Line(cfg[0].Name).Font("Menlo-Bold")
+	menu.Line(cfg.Stacks[0].Name).Font("Menlo-Bold")
 
 	for _, function := range *functions {
 		menu.Line(function.Name).Font("Menlo-Regular").Size(14)
@@ -66,16 +66,16 @@ func runMenu(cmd *cobra.Command, args []string) {
 		statsMenu.HR()
 		statsMenu.Line("Prometheus Stats").Font("Menlo-Bold")
 		statsMenu.Line("Invocations per second")
-		img, _ := graphs.FunctionGraph(cfg[0].Prometheus, function.Name, "rate(gateway_functions_seconds_count{function_name='%s'} [30s])")
+		img, _ := graphs.FunctionGraph(cfg.Stacks[0].Prometheus, function.Name, "rate(gateway_functions_seconds_count{function_name='%s'} [30s])")
 		statsMenu.Line("").Image(img)
 		statsMenu.Line("Aggregate Invocations")
-		img, _ = graphs.FunctionGraph(cfg[0].Prometheus, function.Name, "gateway_function_invocation_total{function_name='%s'}")
+		img, _ = graphs.FunctionGraph(cfg.Stacks[0].Prometheus, function.Name, "gateway_function_invocation_total{function_name='%s'}")
 		statsMenu.Line("").Image(img)
 	}
 
 	menu.Line("---")
-	menu.Line("Open Gateway...").Bash("/usr/bin/open").Params([]string{cfg[0].Gateway}).Terminal(false)
-	menu.Line("Open Prometheus...").Bash("/usr/bin/open").Params([]string{cfg[0].Prometheus}).Terminal(false)
+	menu.Line("Open Gateway...").Bash("/usr/bin/open").Params([]string{cfg.Stacks[0].Gateway}).Terminal(false)
+	menu.Line("Open Prometheus...").Bash("/usr/bin/open").Params([]string{cfg.Stacks[0].Prometheus}).Terminal(false)
 
 	menu.Line("---")
 	menu.Line("Refresh..").Refresh(true)

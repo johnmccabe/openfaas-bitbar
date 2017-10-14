@@ -1,20 +1,15 @@
 package config
 
 import (
-	"fmt"
+	"log"
 
 	homedir "github.com/mitchellh/go-homedir"
+	"github.com/mitchellh/mapstructure"
 	"github.com/spf13/viper"
 )
 
-type OpenFaaSInstance struct {
-	Name       string
-	Gateway    string
-	Prometheus string
-}
-
 // Read config from the specified dir returning a slice of OpenFaaS instances
-func Read(dir string) ([]OpenFaaSInstance, error) {
+func Read(dir string) (*Config, error) {
 	f, err := homedir.Expand(dir)
 	if err != nil {
 		return nil, err
@@ -24,18 +19,14 @@ func Read(dir string) ([]OpenFaaSInstance, error) {
 
 	err = viper.ReadInConfig()
 	if err != nil {
-		return nil, fmt.Errorf("Config file not found")
+		return nil, err
 	}
 
-	conf := []OpenFaaSInstance{}
+	conf := new(Config)
 
-	allSettings := viper.AllSettings()
-	for k := range allSettings {
-		conf = append(conf, OpenFaaSInstance{
-			Name:       viper.GetString(fmt.Sprintf("%s.name", k)),
-			Gateway:    viper.GetString(fmt.Sprintf("%s.gateway", k)),
-			Prometheus: viper.GetString(fmt.Sprintf("%s.prometheus", k)),
-		})
+	err = mapstructure.Decode(viper.AllSettings(), conf)
+	if err != nil {
+		log.Fatalf("%v", err)
 	}
 
 	return conf, nil
