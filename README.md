@@ -1,17 +1,13 @@
-# EARLY PRE-RELEASE
-
 # OpenFaaS Bitbar Plugin
 
 [![Build Status](https://travis-ci.org/johnmccabe/openfaas-bitbar.svg?branch=master)](https://travis-ci.org/johnmccabe/openfaas-bitbar)
 [![Go Report Card](https://goreportcard.com/badge/github.com/johnmccabe/openfaas-bitbar)](https://goreportcard.com/report/github.com/johnmccabe/openfaas-bitbar)
 
-Coming soon to a Mac near you...
-
-![OpenFaaS Bitbar Plugin Gif](assets/screencap.gif)
+![OpenFaaS Bitbar Plugin Gif](https://user-images.githubusercontent.com/83862/31579104-8fc7fc54-b126-11e7-9d50-000069534d16.gif)
 
 ## Installing
 
-You can install and use the plugin as follows (be aware that this is still under development so expect frequent changes, and please do raise issues):
+You can install and use the plugin as follows:
 
 ### BitBar
 
