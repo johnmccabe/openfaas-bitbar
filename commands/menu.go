@@ -29,7 +29,7 @@ var menuCmd = &cobra.Command{
 func runMenu(cmd *cobra.Command, args []string) {
 	ex, _ := os.Executable()
 
-	cfg, err := config.Read(config.DefaultDir)
+	cfg, err := config.Read()
 	if err != nil {
 		plugin := bitbar.New()
 		plugin.StatusLine(" ❓").Font("Avenir").Size(16).TemplateImage(assets.MonoLogo)

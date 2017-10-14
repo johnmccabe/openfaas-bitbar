@@ -24,7 +24,7 @@ var deleteCmd = &cobra.Command{
 
 func runDelete(cmd *cobra.Command, args []string) {
 
-	cfg, err := config.Read(config.DefaultDir)
+	cfg, err := config.Read()
 	if err != nil {
 		os.Exit(1)
 	}
