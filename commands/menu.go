@@ -32,7 +32,7 @@ func runMenu(cmd *cobra.Command, args []string) {
 	cfg, err := config.Read("~/.openfaas/")
 	if err != nil {
 		plugin := bitbar.New()
-		plugin.StatusLine("FNs: ❓\n")
+		plugin.StatusLine(" ❓").TemplateImage(assets.BlueLogo)
 		menu := plugin.NewSubMenu()
 		if err.Error() == "Config file not found" {
 			menu.Line("Initialise config").Bash(ex).Params([]string{"config"}).Terminal(true).Refresh(true)
@@ -47,7 +47,7 @@ func runMenu(cmd *cobra.Command, args []string) {
 	faas.GetFunctions(cfg[0].Gateway, functions)
 
 	plugin := bitbar.New()
-	plugin.StatusLine(fmt.Sprintf("FNs: %d | color=green\n", len(*functions)))
+	plugin.StatusLine(fmt.Sprintf(" %d", len(*functions))).Image(assets.BlueLogo).Color("#067FD1")
 	menu := plugin.NewSubMenu()
 	menu.Line("").Image(assets.Logo)
 	menu.Line("---")
