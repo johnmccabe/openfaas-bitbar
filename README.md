@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/johnmccabe/openfaas-bitbar.svg?branch=master)](https://travis-ci.org/johnmccabe/openfaas-bitbar)
 [![Go Report Card](https://goreportcard.com/badge/github.com/johnmccabe/openfaas-bitbar)](https://goreportcard.com/report/github.com/johnmccabe/openfaas-bitbar)
+[![OpenFaaS](https://img.shields.io/badge/openfaas-serverless-blue.svg)](https://www.openfaas.com)
 
 ![OpenFaaS Bitbar Plugin Gif](https://user-images.githubusercontent.com/83862/31579104-8fc7fc54-b126-11e7-9d50-000069534d16.gif)
 
