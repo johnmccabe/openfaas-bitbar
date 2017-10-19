@@ -56,8 +56,10 @@ func runMenu(cmd *cobra.Command, args []string) {
 	functions := new([]types.Function)
 	faas.GetFunctions(cfg.Stacks[0].Gateway, functions)
 
+	menubarIcon := themeAppropriateIcon()
+
 	plugin := bitbar.New()
-	plugin.StatusLine(fmt.Sprintf(" %d", len(*functions))).Font("Avenir").Size(16).Image(assets.MonoLogo)
+	plugin.StatusLine(fmt.Sprintf(" %d", len(*functions))).Font("Avenir").Size(16).Image(menubarIcon)
 	menu := plugin.NewSubMenu()
 	menu.Line("").Image(assets.Logo)
 	menu.Line("---")
@@ -91,4 +93,11 @@ func runMenu(cmd *cobra.Command, args []string) {
 	menu.Line("Refresh..").Refresh(true)
 
 	fmt.Print(plugin.Render())
+}
+
+func themeAppropriateIcon() string {
+	if _, ok := os.LookupEnv("BitBarDarkMode"); ok {
+		return assets.WhiteLogo
+	}
+	return assets.MonoLogo
 }
