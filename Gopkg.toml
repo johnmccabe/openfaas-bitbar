@@ -1,0 +1,12 @@
+[[constraint]]
+  name = "github.com/johnmccabe/bitbar"
+  version = "0.3.0"
+
+[[constraint]]
+  name = "gopkg.in/AlecAivazis/survey.v1"
+  version = "1.6.0"
+
+[prune]
+  go-tests = true
+  unused-packages = true
+  non-go = true
