@@ -2,7 +2,9 @@ package commands
 
 import (
 	"fmt"
+	"log"
 	"os"
+	"strconv"
 
 	"github.com/johnmccabe/openfaas-bitbar/config"
 	"github.com/johnmccabe/openfaas-bitbar/faas"
@@ -13,13 +15,10 @@ func init() {
 	rootCmd.AddCommand(deleteCmd)
 }
 
-// runMenu adds the `menu` subcommand to openfaas-bitbar
 var deleteCmd = &cobra.Command{
-	Use:     "delete",
-	Short:   "TODO",
-	Example: `TODO`,
-	Long:    `TODO`,
-	Run:     runDelete,
+	Use:    "delete",
+	Run:    runDelete,
+	Hidden: true,
 }
 
 func runDelete(cmd *cobra.Command, args []string) {
@@ -29,13 +28,17 @@ func runDelete(cmd *cobra.Command, args []string) {
 		os.Exit(1)
 	}
 
-	if len(args) < 1 {
+	if len(args) < 2 {
 		os.Exit(1)
 	}
 
 	functionName := args[0]
+	authIndex, err := strconv.Atoi(args[1])
+	if err != nil {
+		log.Fatal(err)
+	}
 
-	err = faas.DeleteFunction(cfg.Stacks[0].Gateway, functionName)
+	err = faas.DeleteFunction(cfg.Auths[authIndex], functionName)
 	if err != nil {
 		fmt.Printf("Error: %v\n", err)
 	}

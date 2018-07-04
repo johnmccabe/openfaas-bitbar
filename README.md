@@ -30,22 +30,7 @@ Install a symlink with the specified refresh interval to the plugin directory.
 
 ## Configuring
 
-By default the plugin will point at an OpenFaaS stack running on `localhost`, if you wish to point at a different location you can create/update the config using the CLI or editing the file yourself:
-
-**CLI**
-
-    $ openfaas-bitbar config
-
-**File**
-
-The config, if not using the default, is stored in `~/.openfaas/config.yaml`, here is the YAML corresponding to the CLI example above:
-
-```yaml
-stacks:
-- name: Civo OpenFaaS
-  gateway: http://xxx.xxx.xxx.xxx:8080/
-  prometheus: http://xxx.xxx.xxx.xxx:9090/
-```
+The `openfaas-bitbar` plugin looks for the presense of a `~/.openfaas/config.yml` file, and if present it will use that to decide what gateways to connect to and use their configured auth. To ensure you can see/login to your gateway, make sure that you've run the `faas-cli login` command for each gateway you wish to see in the menubar.
 
 ## Updating
 

@@ -2,19 +2,12 @@ package config
 
 // Config TODO
 type Config struct {
-	Stacks []Stack `yaml:"stacks"`
+	Auths []Auth `yaml:"auths"`
 }
 
-// Stack TODO
-type Stack struct {
-	Name           string       `yaml:"name"`
-	Gateway        string       `yaml:"gateway"`
-	GatewayAuth    EndpointAuth `yaml:"gatewayauth,omitempty"`
-	Prometheus     string       `yaml:"prometheus"`
-	PrometheusAuth EndpointAuth `yaml:"prometheusauth,omitempty"`
-}
-
-// EndpointAuth TODO
-type EndpointAuth struct {
-	Token string `yaml:"token,omitempty"`
+// Auth TODO
+type Auth struct {
+	Gateway string `yaml:"gateway"`
+	Auth    string `yaml:"auth,omitempty"`
+	Token   string `yaml:"token,omitempty"`
 }

@@ -13,14 +13,13 @@ import (
 
 // DefaultDir TODO
 const DefaultDir string = "~/.openfaas"
-const yamlFile = "config.yaml"
-const legacyTOMLFile = "config.toml"
+const yamlFile = "config.yml"
 
-// DefaultStack TODO
-var DefaultStack = Stack{
-	Name:       "My OpenFaaS",
-	Gateway:    "http://localhost:8080",
-	Prometheus: "http://localhost:9090",
+// DefaultAuth TODO
+var DefaultAuth = Auth{
+	Gateway: "http://localhost:8080",
+	Auth:    "",
+	Token:   "",
 }
 
 // Dir TODO
@@ -32,15 +31,6 @@ func Dir() string {
 // File TODO
 func File() string {
 	return path.Clean(filepath.Join(Dir(), yamlFile))
-}
-
-// LegacyTOMLExists TODO
-func LegacyTOMLExists() bool {
-	tomlFile := path.Clean(filepath.Join(Dir(), legacyTOMLFile))
-	if _, err := os.Stat(tomlFile); !os.IsNotExist(err) {
-		return true
-	}
-	return false
 }
 
 // EnsureConfigDir creates a configDir() if it doesn't already exist
@@ -59,25 +49,27 @@ func EnsureConfigDir() error {
 // Read config from the specified dir returning a slice of OpenFaaS instances
 func Read() (Config, error) {
 	viper.SetConfigName("config")
-	viper.AddConfigPath(Dir())
+	viper.SetConfigFile(File())
 
 	err := viper.ReadInConfig()
 	if err != nil {
 		return Config{
-			Stacks: []Stack{DefaultStack},
+			Auths: []Auth{DefaultAuth},
 		}, nil
 	}
 
-	conf := new(Config)
+	conf := &Config{
+		Auths: []Auth{},
+	}
 
 	err = mapstructure.Decode(viper.AllSettings(), conf)
 	if err != nil {
 		log.Fatalf("%v", err)
 	}
 
-	if len(conf.Stacks) == 0 {
+	if len(conf.Auths) == 0 {
 		return Config{
-			Stacks: []Stack{DefaultStack},
+			Auths: []Auth{DefaultAuth},
 		}, nil
 	}
 

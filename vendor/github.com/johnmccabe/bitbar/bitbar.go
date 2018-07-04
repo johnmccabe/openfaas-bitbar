@@ -304,6 +304,15 @@ func (l *Line) Ansi(b bool) *Line {
 	return l
 }
 
+// CopyToClipboard is a helper to copy the specified text to the OSX clipboard.
+//  line.CopyToClipboard("some text")
+func (l *Line) CopyToClipboard(text string) *Line {
+	line := l.Bash("/bin/bash").
+		Params([]string{"-c", fmt.Sprintf("'echo -n %s | pbcopy'", text)}).
+		Terminal(false)
+	return line
+}
+
 // Render the Bitbar menu as a string.
 func (p *Plugin) Render() string {
 	var output string
@@ -356,10 +365,10 @@ func renderLine(l *Line) string {
 func renderImageOptions(l *Line) []string {
 	imageOptions := []string{}
 	if len(l.templateImage) > 0 {
-		imageOptions = append(imageOptions, fmt.Sprintf("templateImage=%s", l.templateImage))
+		imageOptions = append(imageOptions, fmt.Sprintf("templateImage='%s'", l.templateImage))
 	}
 	if len(l.image) > 0 {
-		imageOptions = append(imageOptions, fmt.Sprintf("image=%s", l.image))
+		imageOptions = append(imageOptions, fmt.Sprintf("image='%s'", l.image))
 	}
 
 	return imageOptions
@@ -368,13 +377,13 @@ func renderImageOptions(l *Line) []string {
 func renderMiscOptions(l *Line) []string {
 	miscOptions := []string{}
 	if l.href != "" {
-		miscOptions = append(miscOptions, fmt.Sprintf("href=%s", l.href))
+		miscOptions = append(miscOptions, fmt.Sprintf("href='%s'", l.href))
 	}
 	if l.dropDown != nil {
 		miscOptions = append(miscOptions, fmt.Sprintf("dropdown=%t", *l.dropDown))
 	}
 	if l.alternate != nil {
-		miscOptions = append(miscOptions, fmt.Sprintf("alternate=%t", *l.alternate))
+		miscOptions = append(miscOptions, fmt.Sprintf("alternate='%t'", *l.alternate))
 	}
 
 	return miscOptions
@@ -383,10 +392,10 @@ func renderMiscOptions(l *Line) []string {
 func renderStyleOptions(l *Line) []string {
 	styleOptions := []string{}
 	if l.color != "" {
-		styleOptions = append(styleOptions, fmt.Sprintf("color=%s", l.color))
+		styleOptions = append(styleOptions, fmt.Sprintf("color=\"%s\"", l.color))
 	}
 	if l.font != "" {
-		styleOptions = append(styleOptions, fmt.Sprintf("font=%s", l.font))
+		styleOptions = append(styleOptions, fmt.Sprintf("font=\"%s\"", l.font))
 	}
 	if l.size > 0 {
 		styleOptions = append(styleOptions, fmt.Sprintf("size=%d", l.size))

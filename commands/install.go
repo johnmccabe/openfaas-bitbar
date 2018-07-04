@@ -16,7 +16,6 @@ func init() {
 	rootCmd.AddCommand(installCmd)
 }
 
-// runMenu adds the `menu` subcommand to openfaas-bitbar
 var installCmd = &cobra.Command{
 	Use:     "install",
 	Short:   "TODO",
